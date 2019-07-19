@@ -1,0 +1,14 @@
+.app {
+  display: flex;
+
+  :global {
+    pre {
+      margin: auto;
+      padding: 2em;
+      color: white;
+      background-color: grey;
+      width: 600px;
+      transition: all 1s ease;
+    }
+  }
+}
