@@ -1,17 +1,9 @@
-// <!-- The core Firebase JS SDK is always required and must be listed first -->
-// <script src="/__/firebase/6.3.1/firebase-app.js"></script>
-
-// <!-- TODO: Add SDKs for Firebase products that you want to use
-//      https://firebase.google.com/docs/web/setup#reserved-urls -->
-
-// <!-- Initialize Firebase -->
-// <script src="/__/firebase/init.js"></script>
+// https://firebase.google.com/docs/web/setup?authuser=0
 
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from "firebase/app";
-
 // Add the Firebase products that you want to use
-import "firebase/auth";
+// import "firebase/auth";
 import "firebase/firestore";
 
 // Initialize Firebase
