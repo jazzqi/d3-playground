@@ -2,11 +2,18 @@ import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { IData } from "./App";
 
+enum BarColors {
+  "pink" = "pink",
+  "skyblue" = "skyblue"
+}
+
 const Graph: React.FC<{ data: IData[] }> = ({ data }) => {
   const d3Container = useRef(null);
   const graphRef = useRef(null);
   const xAxisGroup = useRef(null);
   const yAxisGroup = useRef(null);
+
+  const barColor = BarColors.skyblue;
 
   // create margins & dimensions
   const margin = { top: 20, right: 20, bottom: 30, left: 50 };
@@ -93,7 +100,7 @@ const Graph: React.FC<{ data: IData[] }> = ({ data }) => {
       // add attrs to rects already in DOM
       rects
         .attr("width", x.bandwidth)
-        .attr("fill", "skyblue")
+        .attr("fill", barColor)
         .attr("x", d => (x(d.name) as any) as string);
       // .transition();
       // .duration(500)
@@ -106,7 +113,7 @@ const Graph: React.FC<{ data: IData[] }> = ({ data }) => {
         .append("rect")
         .attr("width", x.bandwidth)
         .attr("height", x => 0)
-        .attr("fill", "pink")
+        .attr("fill", barColor)
         .attr("x", d => (x(d.name) as any) as string)
         .attr("y", d => graphHeight)
         .merge((rects as any) as d3.Selection<
