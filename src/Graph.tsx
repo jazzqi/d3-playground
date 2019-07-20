@@ -9,7 +9,7 @@ const Graph: React.FC<{ data: IData[] }> = ({ data }) => {
   const yAxisGroup = useRef(null);
 
   // create margins & dimensions
-  const margin = { top: 20, right: 20, bottom: 100, left: 100 };
+  const margin = { top: 20, right: 20, bottom: 30, left: 50 };
   const graphWidth = 600 - margin.left - margin.right;
   const graphHeight = 600 - margin.top - margin.bottom;
 
@@ -33,7 +33,7 @@ const Graph: React.FC<{ data: IData[] }> = ({ data }) => {
   const yAxis = d3
     .axisLeft(y)
     .ticks(6)
-    .tickFormat(d => `${d} orders`);
+    .tickFormat(d => `${d} 个`);
 
   const t = d3.transition().duration(600);
 
