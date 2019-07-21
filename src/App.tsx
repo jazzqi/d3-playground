@@ -3,6 +3,7 @@ import { useReducer, useEffect } from "react";
 import db from "./utils/firebase";
 import styles from "./App.module.scss";
 import BarChart from "./BarChart";
+import PieChart from "./PieChart";
 
 export interface IData {
   id: string;
@@ -64,6 +65,7 @@ const App: React.FC = () => {
 
   return (
     <div className={styles.app}>
+      <PieChart data={data} />
       <BarChart data={data} />
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
