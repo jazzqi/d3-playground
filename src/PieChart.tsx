@@ -68,7 +68,7 @@ const PieChart: React.FC<{ data: IData[] }> = props => {
   }, [data]);
 
   return (
-    <svg ref={svg}>
+    <svg ref={svg} viewBox="0 0 310 310">
       <g ref={graphRef} />
     </svg>
   );

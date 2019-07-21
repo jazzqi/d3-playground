@@ -2,6 +2,7 @@ import React from "react";
 import { useReducer, useEffect } from "react";
 import db from "./utils/firebase";
 import styles from "./App.module.scss";
+import "./App.scss";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 
@@ -67,7 +68,9 @@ const App: React.FC = () => {
     <div className={styles.app}>
       <PieChart data={data} />
       <BarChart data={data} />
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <pre className={styles.pre}>
+        <code>{JSON.stringify(data, null, 2)}</code>
+      </pre>
     </div>
   );
 };

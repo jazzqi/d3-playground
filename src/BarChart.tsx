@@ -144,7 +144,7 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
   }, [data]);
 
   return (
-    <svg ref={d3Container}>
+    <svg ref={d3Container} viewBox="0 0 600 600">
       <g ref={graphRef}>
         <g ref={yAxisGroup} />
         <g ref={xAxisGroup} />
