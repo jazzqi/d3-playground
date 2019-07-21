@@ -7,7 +7,7 @@ enum BarColors {
   "skyblue" = "skyblue"
 }
 
-const Graph: React.FC<{ data: IData[] }> = ({ data }) => {
+const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
   const d3Container = useRef(null);
   const graphRef = useRef(null);
   const xAxisGroup = useRef(null);
@@ -153,4 +153,4 @@ const Graph: React.FC<{ data: IData[] }> = ({ data }) => {
   );
 };
 
-export default Graph;
+export default BarChart;
