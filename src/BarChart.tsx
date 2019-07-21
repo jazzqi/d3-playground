@@ -2,18 +2,11 @@ import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { IData } from "./App";
 
-enum BarColors {
-  "pink" = "pink",
-  "skyblue" = "skyblue"
-}
-
 const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
   const d3Container = useRef(null);
   const graphRef = useRef(null);
   const xAxisGroup = useRef(null);
   const yAxisGroup = useRef(null);
-
-  const barColor = BarColors.skyblue;
 
   // create margins & dimensions
   const margin = { top: 20, right: 20, bottom: 30, left: 50 };
@@ -32,8 +25,8 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
   const x = d3
     .scaleBand()
     .range([0, graphWidth])
-    .paddingInner(0.2)
-    .paddingOuter(0.2);
+    .paddingInner(0.5)
+    .paddingOuter(0.5);
 
   // create axes
   const xAxis = d3.axisBottom(x);
@@ -43,6 +36,9 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
     .tickFormat(d => `${d} 个`);
 
   const t = d3.transition().duration(600);
+
+  // ordinal color scale
+  const color = d3.scaleOrdinal(d3.schemePastel2);
 
   useEffect(() => {
     return () => {
@@ -97,10 +93,12 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
       x.domain(data.map(d => d.name));
       y.domain([0, d3.max(data, d => d.orders) as number]);
 
+      color.domain(data.map(d => d.name));
+
       // add attrs to rects already in DOM
       rects
         .attr("width", x.bandwidth)
-        .attr("fill", barColor)
+        .attr("fill", d => color(d.name))
         .attr("x", d => (x(d.name) as any) as string);
       // .transition();
       // .duration(500)
@@ -113,7 +111,7 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
         .append("rect")
         .attr("width", x.bandwidth)
         .attr("height", x => 0)
-        .attr("fill", barColor)
+        .attr("fill", d => color(d.name))
         .attr("x", d => (x(d.name) as any) as string)
         .attr("y", d => graphHeight)
         .merge((rects as any) as d3.Selection<

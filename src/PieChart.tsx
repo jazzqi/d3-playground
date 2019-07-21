@@ -19,7 +19,7 @@ const PieChart: React.FC<{ data: IData[] }> = props => {
   const arcPath = d3
     .arc<d3.PieArcDatum<IData>>()
     .outerRadius(dimensions.radius)
-    .innerRadius(dimensions.radius / 2);
+    .innerRadius(dimensions.radius * 0.75);
   // the <path d="...">
 
   // ordinal color scale
