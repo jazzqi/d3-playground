@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
 import { IData } from "./App";
+import d3tip from "d3-tip";
+import "./d3-tip.css";
 
 const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
   const d3Container = useRef(null);
@@ -40,6 +42,17 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
   // ordinal color scale
   const color = d3.scaleOrdinal(d3.schemePastel2);
 
+  // tip setup
+  const tip = d3tip()
+    .attr("class", "d3-tip")
+    .html(
+      (d: any) =>
+        `<div>
+          ${d.name} - ${d.orders}
+        </div>`
+    );
+
+  // initial setup
   useEffect(() => {
     return () => {
       if (
@@ -82,6 +95,7 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
       if (yAxis === null || xAxis === null) return;
 
       const graph = d3.select(graphRef.current);
+      graph.call(tip);
 
       // join the data to rects
       const rects = graph.selectAll("rect").data(data);
@@ -138,6 +152,15 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
         any,
         any
       >).call(yAxis);
+
+      // add events
+      rects
+        .on("mouseover", (d, i, n) => {
+          tip.show(d, n[i]);
+        })
+        .on("mouseout", (d, i, n) => {
+          tip.hide(d, n[i]);
+        });
     }
   }, [data]);
 

@@ -5,7 +5,6 @@ import styles from "./App.module.scss";
 import "./App.scss";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
-
 export interface IData {
   id: string;
   name: string;
