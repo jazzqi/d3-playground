@@ -118,8 +118,11 @@ const Line: React.FC<{ data: IData2[] }> = ({ data }) => {
       .attr("fill", "#ccc");
 
     // add event listeners to circle (and show dotted lines)
-    circles
+    d3.select(pointsRef.current)
+      .selectAll("circle")
       .on("mouseover", (d, i, n) => {
+        const dd = (d as any) as IData2;
+
         d3.select(n[i])
           .transition()
           .duration(100)
@@ -127,16 +130,16 @@ const Line: React.FC<{ data: IData2[] }> = ({ data }) => {
           .attr("fill", "#00bfa6");
 
         d3.select(xDottedLineRef.current)
-          .attr("x1", x(new Date(d.date)))
-          .attr("x2", x(new Date(d.date)))
+          .attr("x1", x(new Date(dd.date)))
+          .attr("x2", x(new Date(dd.date)))
           .attr("y1", graphHeight)
-          .attr("y2", y(d.count));
+          .attr("y2", y(dd.count));
 
         d3.select(yDottedLineRef.current)
           .attr("x1", 0)
-          .attr("x2", x(new Date(d.date)))
-          .attr("y1", y(d.count))
-          .attr("y2", y(d.count));
+          .attr("x2", x(new Date(dd.date)))
+          .attr("y1", y(dd.count))
+          .attr("y2", y(dd.count));
 
         d3.select(dottedLinesRef.current).style("opacity", 1);
       })
