@@ -1,9 +1,9 @@
 import React from "react";
 import { useReducer, useEffect } from "react";
-import db from "./utils/firebase";
+import db from "../utils/firebase";
 import { Link, Route } from "wouter";
-import BarChart from "./BarChart";
-import PieChart from "./PieChart";
+import BarChart from "../components/BarChart";
+import PieChart from "../components/PieChart";
 
 import "tachyons";
 import "./App.scss";
@@ -68,27 +68,29 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="w100">
+    <div className={styles.app}>
       <div className="w100">
-        <header className="ph3 ph5-ns w-100 bg-transparent pv3 mb4 mb5-ns bb b--black-10 overflow-auto">
-          <div className="nowrap mw9 center">
-            {["bar", "pie", "circle", "tree"].map(i => (
-              <Link href={`/${i}`} key={i}>
-                <a className="pv1-ns f6 fw6 dim link black-70 mr2 mr3-m mr4-l dib">
-                  {i}
-                </a>
-              </Link>
-            ))}
-          </div>
-        </header>
-      </div>
-      <div className={styles.app}>
+        <div className="w100">
+          <header className="ph3 ph5-ns w-100 bg-transparent pv3 mb4 mb5-ns bb b--black-10 overflow-auto">
+            <div className="nowrap mw9 center">
+              {["bar", "pie", "circle", "tree"].map(i => (
+                <Link href={`/${i}`} key={i}>
+                  <a className="pv1-ns f6 fw6 dim link black-70 mr2 mr3-m mr4-l dib">
+                    {i}
+                  </a>
+                </Link>
+              ))}
+            </div>
+          </header>
+        </div>
         <Route path="/pie">
           <PieChart data={data} />
         </Route>
         <Route path="/bar">
           <BarChart data={data} />
         </Route>
+      </div>
+      <div className="w100">
         <pre className={styles.pre}>
           <code>{JSON.stringify(data, null, 2)}</code>
         </pre>
