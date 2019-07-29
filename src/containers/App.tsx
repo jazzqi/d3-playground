@@ -57,6 +57,7 @@ const MockDataCircle = [
   { name: "tech", parent: "news" },
   { name: "sport", parent: "news" },
   { name: "music", parent: "news" },
+  { name: "learn", parent: "news" },
   { name: "ai", parent: "tech", amount: 7 },
   { name: "coding", parent: "tech", amount: 5 },
   { name: "tablets", parent: "tech", amount: 4 },
@@ -73,7 +74,9 @@ const MockDataCircle = [
   { name: "punk", parent: "music", amount: 5 },
   { name: "jazz", parent: "music", amount: 2 },
   { name: "pop", parent: "music", amount: 3 },
-  { name: "classical", parent: "music", amount: 5 }
+  { name: "classical", parent: "music", amount: 5 },
+  { name: "golang", parent: "learn", amount: 7 },
+  { name: "MBA", parent: "learn", amount: 3 }
 ] as IData3[];
 
 const App: React.FC = () => {
