@@ -91,7 +91,7 @@ const MockDataTree = [
   { name: "tech", parent: "news", department: "IT" },
   { name: "sport", parent: "news", department: "OK" },
   { name: "music", parent: "news", department: "Hardware" },
-  { name: "bod", parent: "music", department: "Hardware" }
+  { name: "bob", parent: "music", department: "Hardware" }
 ] as IData4[];
 
 const App: React.FC = () => {
