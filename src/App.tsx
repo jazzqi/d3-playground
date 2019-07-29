@@ -1,10 +1,14 @@
 import React from "react";
 import { useReducer, useEffect } from "react";
 import db from "./utils/firebase";
-import styles from "./App.module.scss";
-import "./App.scss";
+import { Link, Route } from "wouter";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
+
+import "tachyons";
+import "./App.scss";
+import styles from "./App.module.scss";
+
 export interface IData {
   id: string;
   name: string;
@@ -64,12 +68,31 @@ const App: React.FC = () => {
   }, []);
 
   return (
-    <div className={styles.app}>
-      <PieChart data={data} />
-      <BarChart data={data} />
-      <pre className={styles.pre}>
-        <code>{JSON.stringify(data, null, 2)}</code>
-      </pre>
+    <div className="w100">
+      <div className="w100">
+        <header className="ph3 ph5-ns w-100 bg-transparent pv3 mb4 mb5-ns bb b--black-10 overflow-auto">
+          <div className="nowrap mw9 center">
+            {["bar", "pie", "circle", "tree"].map(i => (
+              <Link href={`/${i}`} key={i}>
+                <a className="pv1-ns f6 fw6 dim link black-70 mr2 mr3-m mr4-l dib">
+                  {i}
+                </a>
+              </Link>
+            ))}
+          </div>
+        </header>
+      </div>
+      <div className={styles.app}>
+        <Route path="/pie">
+          <PieChart data={data} />
+        </Route>
+        <Route path="/bar">
+          <BarChart data={data} />
+        </Route>
+        <pre className={styles.pre}>
+          <code>{JSON.stringify(data, null, 2)}</code>
+        </pre>
+      </div>
     </div>
   );
 };
