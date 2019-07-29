@@ -54,40 +54,28 @@ const BarChart: React.FC<{ data: IData[] }> = ({ data }) => {
 
   // initial setup
   useEffect(() => {
-    return () => {
-      if (
-        d3Container.current !== null &&
-        graphRef.current !== null &&
-        yAxisGroup.current !== null &&
-        xAxisGroup.current !== null
-      ) {
-        d3.select(d3Container.current)
-          .attr("width", 600)
-          .attr("height", 600);
+    if (d3Container.current !== null) {
+      d3.select(d3Container.current)
+        .attr("width", 600)
+        .attr("height", 600);
 
-        d3.select(graphRef.current)
-          .attr("width", graphWidth)
-          .attr("height", graphHeight)
-          .attr("transform", `translate(${margin.left}, ${margin.top})`);
+      d3.select(graphRef.current)
+        .attr("width", graphWidth)
+        .attr("height", graphHeight)
+        .attr("transform", `translate(${margin.left}, ${margin.top})`);
 
-        d3.select(xAxisGroup.current).attr(
-          "transform",
-          `translate(0, ${graphHeight})`
-        );
+      d3.select(xAxisGroup.current).attr(
+        "transform",
+        `translate(0, ${graphHeight})`
+      );
 
-        d3.select(xAxisGroup.current)
-          .selectAll("text")
-          .attr("fill", "green")
-          .attr("transform", "rotate(-30)")
-          .attr("text-anchor", "end");
-      }
-    };
-  }, [
-    d3Container.current,
-    graphRef.current,
-    xAxisGroup.current,
-    yAxisGroup.current
-  ]);
+      d3.select(xAxisGroup.current)
+        .selectAll("text")
+        .attr("fill", "green")
+        .attr("transform", "rotate(-30)")
+        .attr("text-anchor", "end");
+    }
+  }, [d3Container.current]);
 
   useEffect(() => {
     //  the update function
