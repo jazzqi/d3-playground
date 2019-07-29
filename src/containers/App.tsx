@@ -6,6 +6,7 @@ import BarChart from "../components/BarChart";
 import PieChart from "../components/PieChart";
 import Line from "../components/Line";
 import Circle from "../components/Circle";
+import Tree from "../components/Tree";
 
 import "tachyons";
 import "./App.scss";
@@ -27,6 +28,12 @@ export interface IData3 {
   name: string;
   parent: string;
   amount?: number;
+}
+
+export interface IData4 {
+  name: string;
+  parent: string;
+  department: string;
 }
 
 const MockDataLine = [
@@ -78,6 +85,14 @@ const MockDataCircle = [
   { name: "golang", parent: "learn", amount: 7 },
   { name: "MBA", parent: "learn", amount: 3 }
 ] as IData3[];
+
+const MockDataTree = [
+  { name: "news", parent: "", department: "Management" },
+  { name: "tech", parent: "news", department: "IT" },
+  { name: "sport", parent: "news", department: "OK" },
+  { name: "music", parent: "news", department: "Hardware" },
+  { name: "bod", parent: "music", department: "Hardware" }
+] as IData4[];
 
 const App: React.FC = () => {
   const dashCollections = db.collection("dashes");
@@ -161,7 +176,9 @@ const App: React.FC = () => {
           <Route path="/circle">
             <Circle data={MockDataCircle} />
           </Route>
-          <Route path="/tree">tree</Route>
+          <Route path="/tree">
+            <Tree data={MockDataTree} />
+          </Route>
         </div>
       </div>
       <div className="w100">
