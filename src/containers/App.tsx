@@ -98,7 +98,7 @@ const MockDataTree = [
 const App: React.FC = () => {
   const dashCollections = db.collection("dashes");
 
-  const [pcdRef, status] = useLoadPcd("/demo2.pcd", {
+  const [pcdRef, status] = useLoadPcd("/demo.pcd", {
     backgroundColor: "#0a0a0a",
     // particalColor: "#ffffff",
     particalSize: 0.1,
