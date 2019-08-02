@@ -18,7 +18,7 @@
     "react-scripts": "3.0.1",
     "tachyons": "^4.11.1",
     "typescript": "3.5.3",
-    "useloadpcd": "^1.0.5",
+    "useloadpcd": "jazzqi/useloadpcd#release",
     "wouter": "^2.1.1"
   },
   "scripts": {

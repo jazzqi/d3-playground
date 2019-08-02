@@ -99,7 +99,7 @@ const App: React.FC = () => {
   const dashCollections = db.collection("dashes");
 
   const [pcdRef, status] = useLoadPcd("/demo2.pcd", {
-    backgroundColor: "#ccc",
+    backgroundColor: "#0a0a0a",
     // particalColor: "#ffffff",
     particalSize: 0.1,
     camera: {
