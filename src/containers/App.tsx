@@ -7,6 +7,7 @@ import PieChart from "../components/PieChart";
 import Line from "../components/Line";
 import Circle from "../components/Circle";
 import Tree from "../components/Tree";
+import useLoadPcd from "useloadpcd";
 
 import "tachyons";
 import "./App.scss";
@@ -97,6 +98,38 @@ const MockDataTree = [
 const App: React.FC = () => {
   const dashCollections = db.collection("dashes");
 
+  const [pcdRef, status] = useLoadPcd("/demo2.pcd", {
+    backgroundColor: "#ccc",
+    // particalColor: "#ffffff",
+    particalSize: 0.1,
+    camera: {
+      aspect: 1,
+      far: 200,
+      fov: 10,
+      near: 1,
+      position: {
+        x: 0.4,
+        z: 4
+      }
+    },
+    controls: {
+      dynamicDampingFactor: 10.03,
+      maxDistance: 30,
+      minDistance: 1,
+      noPan: false,
+      noRotate: false,
+      noZoom: false,
+      panSpeed: 0.25,
+      rotateSpeed: 2.0,
+      staticMoving: true,
+      zoomSpeed: 3
+    },
+    windowSize: {
+      height: 800,
+      width: 800
+    }
+  });
+
   const [data, dispatch] = useReducer(
     (state, action) => {
       let newData = [...state];
@@ -153,7 +186,7 @@ const App: React.FC = () => {
         <div className="w100">
           <header className="ph3 ph5-ns w-100 bg-transparent pv3 mb4 mb5-ns bb b--black-10 overflow-auto">
             <div className="nowrap mw9 center">
-              {["bar", "pie", "line", "circle", "tree"].map(i => (
+              {["bar", "pie", "line", "circle", "tree", "pcd"].map(i => (
                 <Link href={`/${i}`} key={i}>
                   <a className="pv1-ns f6 fw6 dim link black-70 mr2 mr3-m mr4-l dib">
                     {i}
@@ -178,6 +211,9 @@ const App: React.FC = () => {
           </Route>
           <Route path="/tree">
             <Tree data={MockDataTree} />
+          </Route>
+          <Route path="/pcd">
+            <div ref={pcdRef} style={{ width: 800, height: 800 }} />
           </Route>
         </div>
       </div>
