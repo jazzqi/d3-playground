@@ -101,7 +101,7 @@ const App: React.FC = () => {
   const [pcdRef, status] = useLoadPcd("/demo.pcd", {
     backgroundColor: "#0a0a0a",
     // particalColor: "#ffffff",
-    particalSize: 0.1,
+    particalSize: 0.01,
     camera: {
       aspect: 1,
       far: 200,
