@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import { IData2 } from "../containers/App";
+import { IData2 } from "../type/data";
 
 const Line: React.FC<{ data: IData2[] }> = ({ data }) => {
   const d3Container = useRef(null);

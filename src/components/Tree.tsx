@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
-import { IData4 } from "../containers/App";
+import { IData4 } from "../type/data";
 
 const Tree: React.FC<{ data: IData4[] }> = ({ data }) => {
   const svgRef = useRef(null);

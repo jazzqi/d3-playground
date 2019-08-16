@@ -1,5 +1,5 @@
 import React, { useRef, useEffect } from "react";
-import { IData } from "../containers/App";
+import { IData } from "../type/data";
 import * as d3 from "d3";
 
 const PieChart: React.FC<{ data: IData[] }> = props => {

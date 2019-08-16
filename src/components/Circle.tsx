@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import * as d3 from "d3";
-import { IData3 } from "../containers/App";
+import { IData3 } from "../type/data";
 
 const Circle: React.FC<{ data: IData3[] }> = ({ data }) => {
   const svgRef = useRef(null);

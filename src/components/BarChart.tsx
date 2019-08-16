@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import * as d3 from "d3";
-import { IData } from "../containers/App";
+import { IData } from "../type/data";
 import d3tip from "d3-tip";
 import "./d3-tip.css";
 
